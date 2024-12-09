@@ -30,6 +30,16 @@ private slots:
 
     void on_actionLer_triggered();
 
+    void on_actionSalvar_triggered();
+
+    void on_actionSair_triggered();
+
+    void on_actionIncluir_Livro_triggered();
+
+    void on_actionIncluir_CD_triggered();
+
+    void on_actionIncluir_DVD_triggered();
+
 private:
     Ui::MainLoja *ui;
     Loja X;
