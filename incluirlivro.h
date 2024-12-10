@@ -14,9 +14,17 @@ class IncluirLivro : public QDialog
 public:
     explicit IncluirLivro(QWidget *parent = nullptr);
     ~IncluirLivro();
+    void clear();
+
 
 private:
     Ui::IncluirLivro *ui;
+
+signals:
+    void signIncluirLivro(QString nome, QString preco, QString autor);
+
+private slots:
+    void on_IncluirLivro_accepted();
 };
 
 #endif // INCLUIRLIVRO_H

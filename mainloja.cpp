@@ -3,12 +3,22 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QString>
+#include <QLabel>
+#include <QString>
+
 
 MainLoja::MainLoja(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainLoja)
+    , ui(new Ui::MainLoja),
+    inclLivro(new IncluirLivro(this)),
+    inclCD(new IncluirCD(this)),
+    inclDVD(new IncluirDVD(this)),
+    total_itens(new QLabel(this))
 {
     ui->setupUi(this);
+    statusBar()->insertWidget(0,new QLabel("Total de itens: "));
+    statusBar()->insertWidget(1,total_itens);
+    connect(inclLivro,&IncluirLivro::signIncluirLivro,this,&MainLoja::slotIncluirLivro);
 }
 
 MainLoja::~MainLoja()
@@ -37,7 +47,7 @@ void MainLoja::on_tableDvds_cellDoubleClicked(int row, int column)
 void MainLoja::on_actionLer_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(
-        nullptr,
+        this,
         "Ler estoque",
         QString(),
         "Text Files (*.txt)"
@@ -56,8 +66,8 @@ void MainLoja::on_actionLer_triggered()
 
 void MainLoja::on_actionSalvar_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(
-        nullptr,
+    QString filename = QFileDialog::getSaveFileName(
+        this,
         "Salvar estoque",
         QString(),
         "Text Files (*.txt)"
@@ -80,6 +90,8 @@ void MainLoja::on_actionSair_triggered()
 
 void MainLoja::on_actionIncluir_Livro_triggered()
 {
+    inclLivro->clear();
+    inclLivro->show();
 
 }
 
@@ -92,6 +104,10 @@ void MainLoja::on_actionIncluir_CD_triggered()
 
 void MainLoja::on_actionIncluir_DVD_triggered()
 {
+
+}
+
+void MainLoja::slotIncluirLivro(QString nome, QString preco, QString duracao) {
 
 }
 

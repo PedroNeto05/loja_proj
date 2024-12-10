@@ -19,6 +19,9 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QLabel" name="labelLivros">
+        <property name="styleSheet">
+         <string notr="true">background-color: lightgray;color:black;</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::Shape::Box</enum>
         </property>
@@ -32,6 +35,9 @@
       </item>
       <item>
        <widget class="QTableWidget" name="tableLivros">
+        <property name="styleSheet">
+         <string notr="true">color:black;</string>
+        </property>
         <property name="verticalScrollBarPolicy">
          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
         </property>
@@ -50,22 +56,58 @@
         <property name="columnCount">
          <number>3</number>
         </property>
+        <attribute name="horizontalHeaderCascadingSectionResizes">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
         <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderCascadingSectionResizes">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderStretchLastSection">
          <bool>false</bool>
         </attribute>
         <column>
          <property name="text">
           <string>NOME</string>
          </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
+         </property>
         </column>
         <column>
          <property name="text">
           <string>PRECO</string>
          </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
+         </property>
         </column>
         <column>
          <property name="text">
           <string>AUTOR</string>
+         </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
          </property>
         </column>
        </widget>
@@ -76,6 +118,9 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="labelCds">
+        <property name="styleSheet">
+         <string notr="true">background-color: lightgray;color:black;</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::Shape::Box</enum>
         </property>
@@ -89,15 +134,24 @@
       </item>
       <item>
        <widget class="QTableWidget" name="tableCds">
+        <property name="styleSheet">
+         <string notr="true">color:black;</string>
+        </property>
         <property name="verticalScrollBarPolicy">
          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
         </property>
+        <property name="tabKeyNavigation">
+         <bool>false</bool>
+        </property>
         <property name="columnCount">
          <number>3</number>
         </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
         <attribute name="verticalHeaderVisible">
          <bool>false</bool>
         </attribute>
@@ -105,15 +159,36 @@
          <property name="text">
           <string>NOME</string>
          </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
+         </property>
         </column>
         <column>
          <property name="text">
           <string>PRECO</string>
          </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
+         </property>
         </column>
         <column>
          <property name="text">
           <string>N FAIXAS</string>
+         </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
          </property>
         </column>
        </widget>
@@ -124,6 +199,9 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QLabel" name="labelDvds">
+        <property name="styleSheet">
+         <string notr="true">background-color: lightgray;color:black;</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::Shape::Box</enum>
         </property>
@@ -137,15 +215,24 @@
       </item>
       <item>
        <widget class="QTableWidget" name="tableDvds">
+        <property name="styleSheet">
+         <string notr="true">color:black;</string>
+        </property>
         <property name="verticalScrollBarPolicy">
          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
         </property>
         <property name="horizontalScrollBarPolicy">
          <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOn</enum>
         </property>
+        <property name="tabKeyNavigation">
+         <bool>false</bool>
+        </property>
         <property name="columnCount">
          <number>3</number>
         </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
         <attribute name="verticalHeaderVisible">
          <bool>false</bool>
         </attribute>
@@ -153,15 +240,36 @@
          <property name="text">
           <string>NOME</string>
          </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
+         </property>
         </column>
         <column>
          <property name="text">
           <string>PRECO</string>
          </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
+         </property>
         </column>
         <column>
          <property name="text">
           <string>DURACAO</string>
+         </property>
+         <property name="background">
+          <color>
+           <red>211</red>
+           <green>211</green>
+           <blue>211</blue>
+          </color>
          </property>
         </column>
        </widget>

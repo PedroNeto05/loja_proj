@@ -6,6 +6,7 @@
 #include "incluirlivro.h"
 #include "incluircd.h"
 #include "incluirdvd.h"
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,6 +21,9 @@ class MainLoja : public QMainWindow
 public:
     MainLoja(QWidget *parent = nullptr);
     ~MainLoja();
+
+public slots:
+    void slotIncluirLivro(QString nome, QString preco, QString autor);
 
 private slots:
     void on_tableLivros_cellDoubleClicked(int row, int column);
@@ -40,12 +44,16 @@ private slots:
 
     void on_actionIncluir_DVD_triggered();
 
+
+
 private:
     Ui::MainLoja *ui;
     Loja X;
     IncluirLivro* inclLivro;
     IncluirCD* inclCD;
     IncluirDVD* inclDVD;
+    QLabel* total_itens;
+
 
 };
 #endif // MAINLOJA_H
