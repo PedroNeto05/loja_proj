@@ -10,6 +10,7 @@
 MainLoja::MainLoja(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainLoja),
+    X(),
     inclLivro(new IncluirLivro(this)),
     inclCD(new IncluirCD(this)),
     inclDVD(new IncluirDVD(this)),
@@ -44,6 +45,19 @@ MainLoja::MainLoja(QWidget *parent)
     ui->tableDvds->horizontalHeader()->setSectionResizeMode(1,QHeaderView::ResizeToContents);
     ui->tableDvds->horizontalHeader()->setSectionResizeMode(2,QHeaderView::ResizeToContents);
 
+    QStringList LivrosLabel;
+    LivrosLabel << "NOME" << "PRECO" << "AUTOR";
+    ui->tableLivros->setHorizontalHeaderLabels(LivrosLabel);
+
+    QStringList CdsLabel;
+    CdsLabel << "NOME" << "PRECO" << "N FAIXAS";
+    ui->tableCds->setHorizontalHeaderLabels(CdsLabel);
+
+    QStringList DvdsLabel;
+    DvdsLabel << "NOME" << "PRECO" << "DURACAO";
+    ui->tableDvds->setHorizontalHeaderLabels(DvdsLabel);
+
+
     total_itens->setNum(0);
 }
 
@@ -54,19 +68,22 @@ MainLoja::~MainLoja()
 
 void MainLoja::on_tableLivros_cellDoubleClicked(int row, int column)
 {
-
+    if(!X.excluirLivro(row)) return;
+    atualizarTableLivros();
 }
 
 
 void MainLoja::on_tableCds_cellDoubleClicked(int row, int column)
 {
-
+    if(!X.excluirCD(row)) return;
+    atualizarTableCds();
 }
 
 
 void MainLoja::on_tableDvds_cellDoubleClicked(int row, int column)
 {
-
+    if(!X.excluirDVD(row)) return;
+    atualizarTableDvds();
 }
 
 
@@ -87,6 +104,9 @@ void MainLoja::on_actionLer_triggered()
         QMessageBox::critical(this, "Erro", "Não foi possivel ler o arquivo");
         return;
     }
+    atualizarTableLivros();
+    atualizarTableCds();
+    atualizarTableDvds();
 }
 
 
@@ -169,6 +189,7 @@ void MainLoja::slotIncluirCD(QString nome, QString preco, QString numfaixas) {
     }
 
     X.incluirCD(CD(nomeStr, precoDouble, numFaixasInt));
+    atualizarTableCds();
 }
 
 void MainLoja::slotIncluirDVD(QString nome, QString preco, QString duracao) {
@@ -185,44 +206,108 @@ void MainLoja::slotIncluirDVD(QString nome, QString preco, QString duracao) {
     }
 
     X.incluirDVD(DVD(nomeStr, precoDouble, duracaoDouble));
+    atualizarTableDvds();
+
 }
 
 void MainLoja::atualizarTableLivros() {
-    int numRows = X.getNumLivro();
-
     ui->tableLivros->clearContents();
+
+    int numRows = X.getNumLivro();
 
     ui->tableLivros->setRowCount(numRows);
 
 
     for (int i = 0; i < numRows; ++i) {
-        Livro L = X.getLivro(i);  // Obtém o i-ésimo livro de X
+        Livro L = X.getLivro(i);
 
-        // Criando o QLabel para o nome do livro
+
         QLabel *nomeLabel = new QLabel(L.getNome().c_str());
         nomeLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        ui->tableLivros->setCellWidget(i, 0, nomeLabel); // Coluna 0 para nome
+        ui->tableLivros->setCellWidget(i, 0, nomeLabel);
 
-        // Criando o QLabel para o preço, formatando para 2 casas decimais
+
         QString precoFormatado = QString::number(L.getPreco(), 'f', 2);
         QLabel *precoLabel = new QLabel(precoFormatado);
         precoLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-        ui->tableLivros->setCellWidget(i, 1, precoLabel); // Coluna 2 para preço
+        ui->tableLivros->setCellWidget(i, 1, precoLabel);
 
 
-        // Criando o QLabel para o autor
+
         QLabel *autorLabel = new QLabel(L.getAutor().c_str());
         autorLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        ui->tableLivros->setCellWidget(i, 2, autorLabel); // Coluna 1 para autor
-
-
+        ui->tableLivros->setCellWidget(i, 2, autorLabel);
     }
+
+    atualizarTotalItens();
 }
 
 void MainLoja::atualizarTableCds() {
+    ui->tableCds->clearContents();
 
+    int numRows = X.getNumCD();
+
+    ui->tableCds->setRowCount(numRows);
+
+
+    for (int i = 0; i < numRows; ++i) {
+        CD C = X.getCD(i);
+
+
+        QLabel *nomeLabel = new QLabel(C.getNome().c_str());
+        nomeLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        ui->tableCds->setCellWidget(i, 0, nomeLabel);
+
+
+        QString precoFormatado = QString::number(C.getPreco(), 'f', 2);
+        QLabel *precoLabel = new QLabel(precoFormatado);
+        precoLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        ui->tableCds->setCellWidget(i, 1, precoLabel);
+
+
+
+        QString numFaixasFormatado = QString::number(C.getNumFaixas());
+        QLabel *numFaixas = new QLabel(numFaixasFormatado);
+        numFaixas->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        ui->tableCds->setCellWidget(i, 2, numFaixas);
+    }
+
+    atualizarTotalItens();
 }
 
 void MainLoja::atualizarTableDvds() {
+    ui->tableDvds->clearContents();
 
+    int numRows = X.getNumDVD();
+
+    ui->tableDvds->setRowCount(numRows);
+
+
+    for (int i = 0; i < numRows; ++i) {
+        DVD D = X.getDVD(i);
+
+
+        QLabel *nomeLabel = new QLabel(D.getNome().c_str());
+        nomeLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        ui->tableDvds->setCellWidget(i, 0, nomeLabel);
+
+
+        QString precoFormatado = QString::number(D.getPreco(), 'f', 2);
+        QLabel *precoLabel = new QLabel(precoFormatado);
+        precoLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+        ui->tableDvds->setCellWidget(i, 1, precoLabel);
+
+
+
+        QString duracaoFormatado = QString::number(D.getDuracao());
+        QLabel *duracao = new QLabel(duracaoFormatado);
+        duracao->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        ui->tableDvds->setCellWidget(i, 2, duracao);
+    }
+
+    atualizarTotalItens();
+}
+
+void MainLoja::atualizarTotalItens() {
+    total_itens->setNum(X.getNumLivro() + X.getNumCD() + X.getNumDVD());
 }

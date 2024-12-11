@@ -59,6 +59,7 @@ private:
     void atualizarTableLivros();
     void atualizarTableCds();
     void atualizarTableDvds();
+    void atualizarTotalItens();
 
 
 };
