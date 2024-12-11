@@ -66,22 +66,59 @@ MainLoja::~MainLoja()
     delete ui;
 }
 
-void MainLoja::on_tableLivros_cellDoubleClicked(int row, int column)
+void MainLoja::on_tableLivros_cellDoubleClicked(int row, int)
 {
+    if (!(row >= 0 && row <= X.getNumLivro())) return;
+
+    int response = QMessageBox::question(
+        this,
+        "Confirmação",
+        "Você deseja realizar esta ação?",
+        QMessageBox::Yes | QMessageBox::No,
+        QMessageBox::No
+        );
+
+    if (response == QMessageBox::No) return;
+
     if(!X.excluirLivro(row)) return;
     atualizarTableLivros();
 }
 
 
-void MainLoja::on_tableCds_cellDoubleClicked(int row, int column)
+void MainLoja::on_tableCds_cellDoubleClicked(int row, int)
 {
+    if (!(row >= 0 && row <= X.getNumCD())) return;
+
+    int response = QMessageBox::question(
+        this,
+        "Confirmação",
+        "Você deseja realizar esta ação?",
+        QMessageBox::Yes | QMessageBox::No,
+        QMessageBox::No
+        );
+
+    if (response == QMessageBox::No) return;
+
     if(!X.excluirCD(row)) return;
     atualizarTableCds();
 }
 
 
-void MainLoja::on_tableDvds_cellDoubleClicked(int row, int column)
+void MainLoja::on_tableDvds_cellDoubleClicked(int row, int)
 {
+    if (!(row >= 0 && row <= X.getNumDVD())) return;
+
+    int response = QMessageBox::question(
+        this,
+        "Confirmação",
+        "Você deseja realizar esta ação?",
+        QMessageBox::Yes | QMessageBox::No,
+        QMessageBox::No
+        );
+
+    if (response == QMessageBox::No) return;
+
+
     if(!X.excluirDVD(row)) return;
     atualizarTableDvds();
 }
