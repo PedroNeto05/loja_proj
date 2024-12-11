@@ -12,3 +12,17 @@ IncluirDVD::~IncluirDVD()
 {
     delete ui;
 }
+
+void IncluirDVD::clear() {
+
+}
+
+void IncluirDVD::on_IncluirDVD_accepted()
+{
+    QString nome = ui->lineEditNome->text();
+    QString preco = ui->lineEditPreco->text();
+    QString duracao = ui->lineEditDuracao->text();
+
+    emit signIncluirDVD(nome,preco,duracao);
+}
+

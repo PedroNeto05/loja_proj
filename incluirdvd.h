@@ -14,9 +14,16 @@ class IncluirDVD : public QDialog
 public:
     explicit IncluirDVD(QWidget *parent = nullptr);
     ~IncluirDVD();
+    void clear();
 
 private:
     Ui::IncluirDVD *ui;
+
+signals:
+    void signIncluirDVD(QString nome, QString preco, QString duracao);
+
+private slots:
+    void on_IncluirDVD_accepted();
 };
 
 #endif // INCLUIRDVD_H

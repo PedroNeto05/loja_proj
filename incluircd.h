@@ -14,9 +14,16 @@ class IncluirCD : public QDialog
 public:
     explicit IncluirCD(QWidget *parent = nullptr);
     ~IncluirCD();
+    void clear();
 
 private:
     Ui::IncluirCD *ui;
+
+signals:
+    void signIncluirCD(QString nome, QString preco, QString numfaixas);
+
+private slots:
+    void on_IncluirCD_accepted();
 };
 
 #endif // INCLUIRCD_H

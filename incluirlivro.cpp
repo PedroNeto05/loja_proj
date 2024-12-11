@@ -23,9 +23,9 @@ void IncluirLivro::clear() {
 void IncluirLivro::on_IncluirLivro_accepted()
 {
     QString nome = ui->lineEditNome->text();
-    QString autor = ui->lineEditAutor->text();
     QString preco = ui->lineEditPreco->text();
+    QString autor = ui->lineEditAutor->text();
 
-    emit signIncluirLivro(nome,autor,preco);
+    emit signIncluirLivro(nome,preco,autor);
 }
 

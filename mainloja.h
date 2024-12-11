@@ -24,6 +24,8 @@ public:
 
 public slots:
     void slotIncluirLivro(QString nome, QString preco, QString autor);
+    void slotIncluirCD(QString nome, QString preco, QString numfaixas);
+    void slotIncluirDVD(QString nome, QString preco, QString duracao);
 
 private slots:
     void on_tableLivros_cellDoubleClicked(int row, int column);
@@ -53,6 +55,10 @@ private:
     IncluirCD* inclCD;
     IncluirDVD* inclDVD;
     QLabel* total_itens;
+
+    void atualizarTableLivros();
+    void atualizarTableCds();
+    void atualizarTableDvds();
 
 
 };
